@@ -217,9 +217,8 @@ function Main {
 	exit 1 
 	}
 
-    $TakajoExe = $null
+    $TakajoExe = Get-ChildItem -Path ".\takajo-*.exe" | Select-Object -First 1
     if ($Profile -eq 'P') {
-        $TakajoExe = Get-ChildItem -Path ".\takajo-*.exe" | Select-Object -First 1
         if (-not $TakajoExe) { 
 	   Write-Error "`n`tTakajo executable not found!"
 	   Write-Host "`tDownload latest version: https://github.com/Yamato-Security/takajo/releases`n"
