@@ -20,7 +20,7 @@ param(
     [Parameter(Mandatory)][string]$OutputFile
 )
 
-# 1. Load the raw data (tabs between columns)
+# 1. Load the Hayabusa csv
 $raw = Import-Csv -Path $InputFile
 
 # 2. Transform every row
@@ -42,7 +42,7 @@ $timeline = foreach ($row in $raw) {
         'UID'                             = $uid++
         'Date / Time (UTC)'               = $dtUtc
         'Artifact'                        = $artifact
-        'Event Description/What Happened' = $description#.Trim()
+        'Event Description/What Happened' = $description
         'Event System / Source'           = $row.Computer
         'Examiner'                        = 'Hayabusa'
         'Notes'                           = $notes
