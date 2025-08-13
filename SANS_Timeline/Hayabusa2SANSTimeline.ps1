@@ -44,7 +44,7 @@ $timeline = foreach ($row in $raw) {
         'Artifact'                        = $artifact
         'Event Description/What Happened' = $description.Trim()
         'Event System / Source'           = $row.Computer
-        'Examiner'                        = 'Hayabusa'
+        'Examiner'                        = '[Hayabusa]'
         'Notes'                           = $notes.Trim()
     }
 }
