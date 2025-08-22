@@ -20,7 +20,7 @@ param(
     [Parameter(Mandatory)][string]$OutputFile
 )
 
-# 1. Load the Hayabusa csv
+# 1. Load the raw data (tabs between columns)
 $raw = Import-Csv -Path $InputFile
 
 # 2. Transform every row
@@ -33,8 +33,12 @@ $timeline = foreach ($row in $raw) {
             $row.Timestamp              # fallback (already fine)
          }
 
-    $artifact = "Windows EID: {0} `n({1}) `n[{2}]" -f $row.EventID, (Split-Path $row.EvtxFile -Leaf), $row.Provider
+    # Artifact ── “Windows EID: 1116 (ID1116-…evtx) [Defender threat detected]”
+    $artifact = "Windows EID: {0} RID: {1} `n({2}) `n[{3}]" -f $row.EventID, $row.RecordID, (Split-Path $row.EvtxFile -Leaf), $row.Provider
+
+    # Event Description / What Happened ── RuleTitle + Details + ExtraFieldInfo
     $description = "[{0}] `n{1} `n{2}" -f $row.RuleTitle, $row.Details, $row.ExtraFieldInfo
+
     $notes = "{0} `n{1} `n{2}" -f $row.MitreTactics, $row.MitreTags, $row.OtherTags
 
     # Build output object
@@ -44,7 +48,7 @@ $timeline = foreach ($row in $raw) {
         'Artifact'                        = $artifact
         'Event Description/What Happened' = $description.Trim()
         'Event System / Source'           = $row.Computer
-        'Examiner'                        = '[Hayabusa]'
+        'Examiner'                        = 'Hayabusa'
         'Notes'                           = $notes.Trim()
     }
 }
