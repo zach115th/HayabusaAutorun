@@ -24,7 +24,7 @@ param(
 $raw = Import-Csv -Path $InputFile
 
 # 2. Transform every row
-$uid = 1
+$uid = 10000
 $timeline = foreach ($row in $raw) {
 
     $dtUtc = if ($row.Timestamp -match '(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})') {
@@ -48,7 +48,7 @@ $timeline = foreach ($row in $raw) {
         'Artifact'                        = $artifact
         'Event Description/What Happened' = $description.Trim()
         'Event System / Source'           = $row.Computer
-        'Examiner'                        = '[Hayabusa]'
+        'Examiner'                        = '[REVIEW]'
         'Notes'                           = $notes.Trim()
     }
 }
