@@ -145,7 +145,7 @@ function Invoke-HayabusaScan {
             $csvOut = '"' + "$Output\csv_results_${Date}.csv" + '"'
             Write-Host "`n`tStarting CSV timeline scan...`n" -ForegroundColor Green
             Start-Process -FilePath $Executable -ArgumentList `
-                "csv-timeline --directory $quotedLogs --scan-all-evtx-files --no-wizard --enable-all-rules --multiline --output $csvOut --profile super-verbose --UTC -N -q" `
+                "csv-timeline --sort --directory $quotedLogs --scan-all-evtx-files --no-wizard --enable-all-rules --multiline --output $csvOut --profile super-verbose --remove-duplicate-detections --UTC -N -q" `
                 -NoNewWindow `
                 -PassThru `
                 -Wait
@@ -154,7 +154,7 @@ function Invoke-HayabusaScan {
             $tsOut = '"' + "$Output\ts_results_${Date}.csv" + '"'
             Write-Host "`n`tStarting Timesketch timeline scan...`n" -ForegroundColor Green
             Start-Process -FilePath $Executable -ArgumentList `
-                "csv-timeline --directory $quotedLogs --scan-all-evtx-files --no-wizard --enable-all-rules --output $tsOut --profile timesketch-verbose --UTC -N -q" `
+                "csv-timeline --sort --directory $quotedLogs --scan-all-evtx-files --no-wizard --enable-all-rules --output $tsOut --profile timesketch-verbose --remove-duplicate-detections --UTC -N -q" `
                 -NoNewWindow `
                 -PassThru `
                 -Wait
@@ -163,7 +163,7 @@ function Invoke-HayabusaScan {
             $jsonlOut = '"' + "$Output\takajo_results_${Date}.jsonl" + '"'
             Write-Host "`n`tStarting JSON timeline scan...`n" -ForegroundColor Green
             Start-Process -FilePath $Executable -ArgumentList `
-                "json-timeline --directory $quotedLogs --scan-all-evtx-files --no-wizard --enable-all-rules --JSONL-output -o $jsonlOut --profile super-verbose --UTC -N -q" `
+                "json-timeline --sort --directory $quotedLogs --scan-all-evtx-files --no-wizard --enable-all-rules --JSONL-output -o $jsonlOut --profile super-verbose --remove-duplicate-detections --UTC -N -q" `
                 -NoNewWindow `
                 -PassThru `
                 -Wait
