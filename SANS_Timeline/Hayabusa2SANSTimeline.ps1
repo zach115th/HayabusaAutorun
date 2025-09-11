@@ -73,4 +73,4 @@ if (-not (Get-Module -ListAvailable -Name ImportExcel)) {
 Import-Module ImportExcel -ErrorAction Stop
 
 # 3. Write the timeline
-$timeline | Export-Excel '.\timeline.xlsx' -WorksheetName 'Timeline'
+$timeline | Export-Excel $OutputFile -WorksheetName 'Timeline'
