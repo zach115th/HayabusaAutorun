@@ -43,13 +43,13 @@ $timeline = foreach ($row in $raw) {
 
     # Build output object
     [pscustomobject]@{
-        'UID'                             = $uid++
-        'Date / Time (UTC)'               = $dtUtc
-        'Artifact'                        = $artifact
-        'Event Description/What Happened' = $description.Trim()
-        'Event System / Source'           = $row.Computer
-        'Examiner'                        = '[REVIEW]'
-        'Notes'                           = $notes.Trim()
+        'UID'                               = $uid++
+        'Date / Time (UTC)'                 = $dtUtc
+        'Artifact'                          = $artifact
+        'Event Description / What Happened' = $description.Trim()
+        'Event System / Source'             = $row.Computer
+        'Examiner'                          = '[REVIEW]'
+        'Notes'                             = $notes.Trim()
     }
 }
 
