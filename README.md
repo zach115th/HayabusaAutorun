@@ -2,6 +2,8 @@
 
 **Modular PowerShell automation for streamlined Hayabusa & Takajo workflows.**  
 
+[Update for latest version of Hayabusa coming soon]
+
 ---
 
 ## Table of Contents
